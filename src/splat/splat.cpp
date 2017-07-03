@@ -34,6 +34,8 @@
 #include "splat.h"
 #include "itwom3.0.h"
 
+#include "SharedConsts.h"
+
 #define GAMMA 2.5
 #define BZBUFFER 65536
 
@@ -51,15 +53,14 @@
 
 
 
-char 	string[255], sdf_path[SDF_PATH_SIZE], opened=0, gpsav=0, splat_name[SPLAT_NAME_SIZE],
-	splat_version[SPLAT_VERSION_SIZE], dashes[DASHES_SIZE], olditm;
+char 	string[255], sdf_path[SDF_PATH_SIZE], opened=0, gpsav=0, dashes[DASHES_SIZE], olditm;
 
 double	earthradius, max_range=0.0, forced_erp=-1.0, dpp, ppd,
 	fzone_clearance=0.6, forced_freq, clutter;
 
 int	min_north=90, max_north=-90, min_west=360, max_west=-1, ippd, mpi,
 	max_elevation=-32768, min_elevation=32768, bzerror, contour_threshold,
-    maxpages=16, arraysize=-1;
+        maxpages=16, arraysize=-1;
 
 unsigned char got_elevation_pattern, got_azimuth_pattern, metric=0, dbm=0, smooth_contours=0;
 struct site *site;
