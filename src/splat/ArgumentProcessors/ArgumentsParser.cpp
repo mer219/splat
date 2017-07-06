@@ -35,26 +35,6 @@ void ArgumentsParser::ProcessArguments(int argc, const char * argv[])
     }
 }
 /*	       
-        if (strcmp(argv[x],"-sc")==0)
-            smooth_contours=1;
-        
-        if (strcmp(argv[x],"-olditm")==0)
-            olditm=1;
-        
-        if (strcmp(argv[x],"-N")==0)
-        {
-            nolospath=1;
-            nositereports=1;
-        }
-        
-        if (strcmp(argv[x],"-d")==0)
-        {
-            z=x+1;
-            
-            if (z<=y && argv[z][0] && argv[z][0]!='-')
-                strncpy(sdf_path,argv[z],253);
-        }
-        
         if (strcmp(argv[x],"-t")==0)
         {
             // Read Transmitter Location 
