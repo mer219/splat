@@ -12,12 +12,6 @@
 #define	KM_PER_MILE 1.609344
 #define FOUR_THIRDS 1.3333333333333
 
-struct site {	double lat;
-    double lon;
-    float alt;
-    char name[50];
-    char filename[255];
-};
 
 struct LR {	double eps_dielect;
     double sgm_conductivity;

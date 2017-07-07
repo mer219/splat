@@ -1012,23 +1012,24 @@ void PlaceMarker(struct site location, std::vector<Dem> &dem)
 	}
 }
 
+/*
 double ReadBearing(char *input)
 {
-	/* This function takes numeric input in the form of a character
-	   string, and returns an equivalent bearing in degrees as a
-	   decimal number (double).  The input may either be expressed
-	   in decimal format (40.139722) or degree, minute, second
-	   format (40 08 23).  This function also safely handles
-	   extra spaces found either leading, trailing, or
-	   embedded within the numbers expressed in the
-	   input string.  Decimal seconds are permitted. */
+	// This function takes numeric input in the form of a character
+	// string, and returns an equivalent bearing in degrees as a
+	// decimal number (double).  The input may either be expressed
+	// in decimal format (40.139722) or degree, minute, second
+	// format (40 08 23).  This function also safely handles
+	// extra spaces found either leading, trailing, or
+	// embedded within the numbers expressed in the
+	// input string.  Decimal seconds are permitted. 
  
 	double	seconds, bearing=0.0;
 	char	string[20];
 	int	a, b, degrees, minutes;
 
-	/* Copy "input" to "string", and ignore any extra
-	   spaces that might be present in the process. */
+	// Copy "input" to "string", and ignore any extra
+	// spaces that might be present in the process. 
 
 	string[0]=0;
 	size_t length=strlen(input);
@@ -1044,7 +1045,7 @@ double ReadBearing(char *input)
 
 	string[b]=0;
 
-	/* Count number of spaces in the clean string. */
+	// Count number of spaces in the clean string. 
 
 	length=strlen(string);
 
@@ -1052,10 +1053,10 @@ double ReadBearing(char *input)
 		if (string[a]==32)
 			b++;
 
-	if (b==0)  /* Decimal Format (40.139722) */
+	if (b==0)  // Decimal Format (40.139722) 
 		sscanf(string,"%lf",&bearing);
 
-	if (b==2)  /* Degree, Minute, Second Format (40 08 23.xx) */
+	if (b==2)  // Degree, Minute, Second Format (40 08 23.xx) 
 	{
 		sscanf(string,"%d %d %lf",&degrees, &minutes, &seconds);
 
@@ -1067,23 +1068,25 @@ double ReadBearing(char *input)
 			bearing=-bearing;
 	}
 
-	/* Anything else returns a 0.0 */
+	// Anything else returns a 0.0 
 
 	if (bearing>360.0 || bearing<-360.0)
 		bearing=0.0;
 
 	return bearing;
 }
+*/
 
+/*
 struct site LoadQTH(char *filename)
 {
-	/* This function reads SPLAT! .qth (site location) files.
-	   The latitude and longitude may be expressed either in
-	   decimal degrees, or in degree, minute, second format.
-	   Antenna height is assumed to be expressed in feet above
-	   ground level (AGL), unless followed by the letter 'M',
-	   or 'm', or by the word "meters" or "Meters", in which
-	   case meters is assumed, and is handled accordingly. */
+	   //This function reads SPLAT! .qth (site location) files.
+	   //The latitude and longitude may be expressed either in
+	   //decimal degrees, or in degree, minute, second format.
+	   //Antenna height is assumed to be expressed in feet above
+	   //ground level (AGL), unless followed by the letter 'M',
+	   //or 'm', or by the word "meters" or "Meters", in which
+	   //case meters is assumed, and is handled accordingly. 
 
 	char	string[50], qthfile[255];
 	struct	site tempsite;
@@ -1110,40 +1113,40 @@ struct site LoadQTH(char *filename)
 
 	if (fd!=NULL)
 	{
-		/* Site Name */
+		// Site Name 
 		fgets(string,49,fd);
 
-		/* Strip <CR> and/or <LF> from end of site name */
+		// Strip <CR> and/or <LF> from end of site name 
 
 		for (x=0; string[x]!=13 && string[x]!=10 && string[x]!=0; tempsite.name[x]=string[x], x++);
 
 		tempsite.name[x]=0;
 
-		/* Site Latitude */
+		// Site Latitude 
 		fgets(string,49,fd);
 		tempsite.lat=ReadBearing(string);
 
-		/* Site Longitude */
+		// Site Longitude 
 		fgets(string,49,fd);
 		tempsite.lon=ReadBearing(string);
 
 		if (tempsite.lon<0.0)
 			tempsite.lon+=360.0;
 
-		/* Antenna Height */
+		// Antenna Height 
 		fgets(string,49,fd);
 		fclose(fd);
 
-		/* Remove <CR> and/or <LF> from antenna height string */
+		// Remove <CR> and/or <LF> from antenna height string 
 		for (x=0; string[x]!=13 && string[x]!=10 && string[x]!=0; x++);
 
 		string[x]=0;
 
-		/* Antenna height may either be in feet or meters.
-		   If the letter 'M' or 'm' is discovered in
-		   the string, then this is an indication that
-		   the value given is expressed in meters, and
-		   must be converted to feet before exiting. */
+		   //Antenna height may either be in feet or meters.
+		   //If the letter 'M' or 'm' is discovered in
+		   //the string, then this is an indication that
+		   //the value given is expressed in meters, and
+		   //must be converted to feet before exiting. 
 
 		for (x=0; string[x]!='M' && string[x]!='m' && string[x]!=0 && x<48; x++);
 
@@ -1168,6 +1171,7 @@ struct site LoadQTH(char *filename)
 
 	return tempsite;
 }
+*/
 
 void LoadPAT(char *filename)
 {
