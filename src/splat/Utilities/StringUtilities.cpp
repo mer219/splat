@@ -1,12 +1,15 @@
+#include "StringUtilities.h"
 
-void SiteLocation::StripCarriageReturnAndLineFeed(char * text)
+#include <cstring>
+
+void StringUtilities::StripCarriageReturnAndLineFeed(char * text)
 {
     size_t nameSize = strlen(text);
-    for (int characterNumber = 0; characterNumber < nameSize ; characterNumber++);
+    for (int characterNumber = 0; characterNumber < nameSize; characterNumber++)
     {
         if(IsCarriageReturn(text[characterNumber]) ||
             IsLineFeed(text[characterNumber]) ||
-            IsNullCharacter(text[characterNumber])_)
+            IsNullCharacter(text[characterNumber]))
 	{
             text[characterNumber] = 0;
 	    break;
@@ -14,44 +17,44 @@ void SiteLocation::StripCarriageReturnAndLineFeed(char * text)
     }
 }
 
-bool SiteLocation::IsCarriageReturn(char * character)
+bool StringUtilities::IsCarriageReturn(char character)
 {
    return character == 13;
 }
 
-bool SiteLocation::IsLineFeed(char * character)
+bool StringUtilities::IsLineFeed(char character)
 {
    return character == 10;
 }
 
-bool SiteLocation::IsNewLine(char * character)
+bool StringUtilities::IsNewLine(char character)
 {
     return (IsLineFeed(character) || IsCarriageReturn(character));
 }
 
-bool SiteLocation::IsNullCharacter(char * character)
+bool StringUtilities::IsNullCharacter(char character)
 {
     return character == 0;
 }
 
-bool SiteLocation::IsSpace(char * character)
+bool StringUtilities::IsSpace(char character)
 {
     return character == 32;
 }
 
-void SiteLocation::StripLeadingAndTrailingWhitespace(char * inputString)
+void StringUtilities::StripLeadingAndTrailingWhitespace(char * inputString)
 {
     size_t stringLength = strlen(inputString);
 
     char stringCopy[20];
     int copyIndex = 0;
-    for (int charcterIndex = 0; characterIndex < stringLength && characterIndex < 18; characterIndex++)
+    for (int characterIndex = 0; characterIndex < stringLength && characterIndex < 18; characterIndex++)
     {
-        if ((!IsSpace(inputString[characterIndex] && !IsNewLine(inputString[characterIndex])) 
-            || (IsSpace(inputString[characterIndex] && !IsSpace(inputString[characterIndex + 1] 
+        if ((!IsSpace(inputString[characterIndex]) && !IsNewLine(inputString[characterIndex])) 
+            || (IsSpace(inputString[characterIndex]) && !IsSpace(inputString[characterIndex + 1])
                 && !IsNewLine(inputString[characterIndex + 1]) && copyIndex != 0))
         {
-            stringCOpy[copyIndex] = inputString[characterIndex];
+            stringCopy[copyIndex] = inputString[characterIndex];
 	    copyIndex++;
 	}	 
     }

@@ -8,8 +8,8 @@ struct Site
         latitude = 91;
 	longitude = 361;
 	altitude = 0;
-	name = 0;
-	fileName = 0;
+	name[0] = 0;
+	fileName[0] = 0;
     }
 
     double latitude;

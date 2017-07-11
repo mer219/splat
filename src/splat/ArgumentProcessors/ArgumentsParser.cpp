@@ -35,51 +35,6 @@ void ArgumentsParser::ProcessArguments(int argc, const char * argv[])
     }
 }
 /*	       
-        if (strcmp(argv[x],"-t")==0)
-        {
-            // Read Transmitter Location 
-            
-            z=x+1;
-            
-            while (z<=y && argv[z][0] && argv[z][0]!='-' && txsites<30)
-            {
-                strncpy(txfile,argv[z],253);
-                tx_site[txsites]=LoadQTH(txfile);
-                txsites++;
-                z++;
-            }
-            
-            z--;
-        }
-        
-        if (strcmp(argv[x],"-L")==0)
-        {
-            z=x+1;
-            
-            if (z<=y && argv[z][0] && argv[z][0]!='-')
-            {
-                sscanf(argv[z],"%lf",&altitudeLR);
-                map=1;
-                LRmap=1;
-                area_mode=1;
-                
-                if (coverage)
-                    fprintf(stdout,"c and L are exclusive options, ignoring L.\n");
-            }
-        }
-        
-        if (strcmp(argv[x],"-l")==0)
-        {
-            z=x+1;
-            
-            if (z<=y && argv[z][0] && argv[z][0]!='-')
-            {
-                strncpy(longley_file,argv[z],253);
-                longley_plot=1;
-                pt2pt_mode=1;
-            }
-        }
-        
         if (strcmp(argv[x],"-r")==0)
         {
             // Read Receiver Location 
