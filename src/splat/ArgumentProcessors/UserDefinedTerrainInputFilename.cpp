@@ -1,7 +1,6 @@
 #include "UserDefinedTerrainInputFilename.h"
 
 #include <cstring>
-#include <cstdio>
 #include <stdexcept>
 
 UserDefinedTerrainInputFilename::UserDefinedTerrainInputFilename(char userDefinedTerrainFilename[]) :
@@ -31,6 +30,6 @@ void UserDefinedTerrainInputFilename::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid User Define Terrain Input File Name");
     }
 }

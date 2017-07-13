@@ -6,7 +6,7 @@
 class ContourThreshold : ArgumentProcessor
 {
 public:
-    ContourThreshold(int& contourThreshold);
+    ContourThreshold(int & contourThreshold);
     ~ContourThreshold();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    int& contourThreshold;
+    int & contourThreshold;
 };
 #endif

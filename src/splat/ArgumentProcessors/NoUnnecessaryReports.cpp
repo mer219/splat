@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-NoUnnecessaryReports::NoUnnecessaryReports(bool& doNotPlotLineOfSightPaths, bool& doNotPrintSiteReports) :
+NoUnnecessaryReports::NoUnnecessaryReports(bool & doNotPlotLineOfSightPaths, bool & doNotPrintSiteReports) :
     doNotPlotLineOfSightPaths(doNotPlotLineOfSightPaths),
     doNotPrintSiteReports(doNotPrintSiteReports)
 {

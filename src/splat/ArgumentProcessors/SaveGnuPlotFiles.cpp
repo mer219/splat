@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-SaveGnuPlotFiles::SaveGnuPlotFiles(bool& saveGnuPlotFiles) :
+SaveGnuPlotFiles::SaveGnuPlotFiles(bool & saveGnuPlotFiles) :
     saveGnuPlotFiles(saveGnuPlotFiles)
 {
 }

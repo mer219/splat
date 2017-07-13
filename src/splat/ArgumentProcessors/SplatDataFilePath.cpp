@@ -1,7 +1,6 @@
 #include "SplatDataFilePath.h"
 
 #include <cstring>
-#include <cstdio>
 #include <stdexcept>
 
 SplatDataFilePath::SplatDataFilePath(char * splatDataFilePath) :
@@ -31,6 +30,6 @@ void SplatDataFilePath::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid Splat Data File Path");
     }
 }

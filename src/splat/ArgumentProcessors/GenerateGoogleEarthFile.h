@@ -6,7 +6,7 @@
 class GenerateGoogleEarthFile : ArgumentProcessor
 {
 public:
-    GenerateGoogleEarthFile(bool& generateGoogleEarthFile);
+    GenerateGoogleEarthFile(bool & generateGoogleEarthFile);
     ~GenerateGoogleEarthFile();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& generateGoogleEarthFile;
+    bool & generateGoogleEarthFile;
 };
 #endif

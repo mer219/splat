@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-RangeModifier::RangeModifier(double& maxRange) :
+RangeModifier::RangeModifier(double & maxRange) :
     maxRange(maxRange)
 {
 }
@@ -30,10 +30,13 @@ void RangeModifier::ProcessArgument(const char argument[])
         sscanf(argument, "%lf", &maxRange);
         
         if (maxRange < 0.0)
+	{
             maxRange = 0.0;
-        
-        if (maxRange > 1000.0)
+	}
+	else if (maxRange > 1000.0)
+	{
             maxRange = 1000.0;
+	}
     }
     else
     {

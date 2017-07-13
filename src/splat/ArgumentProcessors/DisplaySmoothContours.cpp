@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-DisplaySmoothContours::DisplaySmoothContours(bool& displaySmoothContours) :
+DisplaySmoothContours::DisplaySmoothContours(bool & displaySmoothContours) :
     displaySmoothContours(displaySmoothContours)
 {
 }

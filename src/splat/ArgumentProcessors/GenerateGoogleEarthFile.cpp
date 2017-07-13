@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-GenerateGoogleEarthFile::GenerateGoogleEarthFile(bool& generateGoogleEarthFile) :
+GenerateGoogleEarthFile::GenerateGoogleEarthFile(bool & generateGoogleEarthFile) :
     generateGoogleEarthFile(generateGoogleEarthFile)
 {
 }

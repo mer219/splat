@@ -1,10 +1,9 @@
 #include "TerrainHeightPlotOutputFilename.h"
 
 #include <cstring>
-#include <cstdio>
 #include <stdexcept>
 
-TerrainHeightPlotOutputFilename::TerrainHeightPlotOutputFilename(char* terrainHeightFilename, bool& generateTerrainHeightPlot) :
+TerrainHeightPlotOutputFilename::TerrainHeightPlotOutputFilename(char * terrainHeightFilename, bool & generateTerrainHeightPlot) :
     terrainHeightFilename(terrainHeightFilename),
     generateTerrainHeightPlot(generateTerrainHeightPlot)
 {
@@ -33,6 +32,6 @@ void TerrainHeightPlotOutputFilename::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid Terrain Height Plot Output File Name");
     }
 }

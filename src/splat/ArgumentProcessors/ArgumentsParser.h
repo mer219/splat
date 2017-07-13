@@ -8,11 +8,11 @@ class ArgumentProcessor;
 class ArgumentsParser
 {
 public:
-    ArgumentsParser(std::vector<ArgumentProcessor*>& argumentProcessors);
+    ArgumentsParser(std::vector<ArgumentProcessor *> & argumentProcessors);
     void ProcessArguments(int argc, const char * argv[]);
 
 private:
-    std::vector<ArgumentProcessor*>& argumentProcessors;
+    std::vector<ArgumentProcessor *> & argumentProcessors;
 };
 
 #endif

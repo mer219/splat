@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    char* userDefinedTerrainFilename;
+    char * userDefinedTerrainFilename;
 };
 #endif

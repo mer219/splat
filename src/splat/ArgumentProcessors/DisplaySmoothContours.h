@@ -6,7 +6,7 @@
 class DisplaySmoothContours : ArgumentProcessor
 {
 public:
-    DisplaySmoothContours(bool& displaySmoothContours);
+    DisplaySmoothContours(bool & displaySmoothContours);
     ~DisplaySmoothContours();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& displaySmoothContours;
+    bool & displaySmoothContours;
 };
 #endif

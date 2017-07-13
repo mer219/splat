@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-ContourThreshold::ContourThreshold(int& contourThreshold) :
+ContourThreshold::ContourThreshold(int & contourThreshold) :
     contourThreshold(contourThreshold)
 {
 }
@@ -31,6 +31,6 @@ void ContourThreshold::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid Contour Threshold Value");
     }
 }

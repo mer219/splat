@@ -1,7 +1,6 @@
 #include "LongleyPlotOutputFileName.h"
 
 #include <cstring>
-#include <cstdio>
 #include <stdexcept>
 
 LongleyPlotOutputFileName::LongleyPlotOutputFileName(char * longleyFileName, bool & generateLongleyPlot) :
@@ -33,6 +32,6 @@ void LongleyPlotOutputFileName::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid Longely Plot Output File Name");
     }
 }

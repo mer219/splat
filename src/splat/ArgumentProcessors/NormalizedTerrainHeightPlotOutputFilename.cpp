@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-NormalizedTerrainHeightPlotOutputFilename::NormalizedTerrainHeightPlotOutputFilename(char* normalizedTerrainHeightFilename, bool& generateNormalizedTerrainHeightPlot) :
+NormalizedTerrainHeightPlotOutputFilename::NormalizedTerrainHeightPlotOutputFilename(char * normalizedTerrainHeightFilename, bool & generateNormalizedTerrainHeightPlot) :
     normalizedTerrainHeightFilename(normalizedTerrainHeightFilename),
     generateNormalizedTerrainHeightPlot(generateNormalizedTerrainHeightPlot)
 {
@@ -33,6 +33,6 @@ void NormalizedTerrainHeightPlotOutputFilename::ProcessArgument(const char argum
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid Normalized Terrain Height Plot Output File Name");
     }
 }

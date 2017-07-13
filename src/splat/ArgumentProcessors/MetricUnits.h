@@ -6,7 +6,7 @@
 class MetricUnits : ArgumentProcessor
 {
 public:
-    MetricUnits(bool& useMetric);
+    MetricUnits(bool & useMetric);
     ~MetricUnits();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& useMetric;
+    bool & useMetric;
 };
 #endif

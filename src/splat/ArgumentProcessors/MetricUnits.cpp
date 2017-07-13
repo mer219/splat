@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-MetricUnits::MetricUnits(bool& useMetric) :
+MetricUnits::MetricUnits(bool & useMetric) :
     useMetric(useMetric)
 {
 }

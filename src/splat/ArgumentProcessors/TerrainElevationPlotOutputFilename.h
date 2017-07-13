@@ -6,7 +6,7 @@
 class TerrainElevationPlotOutputFilename : ArgumentProcessor
 {
 public:
-    TerrainElevationPlotOutputFilename(char* terrainElevationFilename, bool& generateTerrainElevationPlot);
+    TerrainElevationPlotOutputFilename(char * terrainElevationFilename, bool & generateTerrainElevationPlot);
     ~TerrainElevationPlotOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,7 +14,7 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    char* terrainElevationFilename;
-    bool& generateTerrainElevationPlot;
+    char * terrainElevationFilename;
+    bool & generateTerrainElevationPlot;
 };
 #endif

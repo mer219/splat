@@ -3,11 +3,9 @@
 #include "../FileUtilities/SiteLocationFile.h"
 
 #include <cstring>
-#include <cstdio>
 #include <stdexcept>
 
-TransmitterLocationFile::TransmitterLocationFile(std::vector<Site*> & transmitterLocations,
-    SiteLocationFile & siteLocationFile) :
+TransmitterLocationFile::TransmitterLocationFile(std::vector<Site *> & transmitterLocations, SiteLocationFile & siteLocationFile) :
         transmitterLocations(transmitterLocations),
         siteLocationFile(siteLocationFile)
 {
@@ -37,6 +35,6 @@ void TransmitterLocationFile::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Range Value");
+        throw std::invalid_argument("Invalid Transmitter Location File Name");
     }
 }

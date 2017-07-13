@@ -6,7 +6,7 @@
 class FresnelZoneClearancePercentage : ArgumentProcessor
 {
 public:
-    FresnelZoneClearancePercentage(double& fresnelZoneClearancePercentage);
+    FresnelZoneClearancePercentage(double & fresnelZoneClearancePercentage);
     ~FresnelZoneClearancePercentage();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    double& fresnelZoneClearancePercentage;
+    double & fresnelZoneClearancePercentage;
 };
 #endif

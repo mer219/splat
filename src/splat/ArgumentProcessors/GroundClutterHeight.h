@@ -6,7 +6,7 @@
 class GroundClutterHeight : ArgumentProcessor
 {
 public:
-    GroundClutterHeight(double& clutterHeight);
+    GroundClutterHeight(double & clutterHeight);
     ~GroundClutterHeight();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    double& clutterHeight;
+    double & clutterHeight;
 };
 #endif

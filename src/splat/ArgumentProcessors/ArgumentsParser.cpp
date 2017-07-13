@@ -35,21 +35,6 @@ void ArgumentsParser::ProcessArguments(int argc, const char * argv[])
     }
 }
 /*	       
-        if (strcmp(argv[x],"-r")==0)
-        {
-            // Read Receiver Location 
-            
-            z=x+1;
-            
-            if (z<=y && argv[z][0] && argv[z][0]!='-')
-            {
-                strncpy(rxfile,argv[z],253);
-                rx_site=LoadQTH(rxfile);
-                rxsite=1;
-                pt2pt_mode=1;
-            }
-        }
-        
         if (strcmp(argv[x],"-s")==0)
         {
             // Read city file(s) 

@@ -6,7 +6,7 @@
 class NoUnnecessaryReports : ArgumentProcessor
 {
 public:
-    NoUnnecessaryReports(bool& doNotPlotLineOfSightPaths, bool& doNotPrintSiteReports);
+    NoUnnecessaryReports(bool & doNotPlotLineOfSightPaths, bool & doNotPrintSiteReports);
     ~NoUnnecessaryReports();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,7 +14,7 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& doNotPlotLineOfSightPaths;
-    bool& doNotPrintSiteReports;
+    bool & doNotPlotLineOfSightPaths;
+    bool & doNotPrintSiteReports;
 };
 #endif

@@ -6,7 +6,7 @@
 class GenerateXastirGeoreferenceFile : ArgumentProcessor
 {
 public:
-    GenerateXastirGeoreferenceFile(bool& generateXastirFile);
+    GenerateXastirGeoreferenceFile(bool & generateXastirFile);
     ~GenerateXastirGeoreferenceFile();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& generateXastirFile;
+    bool & generateXastirFile;
 };
 #endif

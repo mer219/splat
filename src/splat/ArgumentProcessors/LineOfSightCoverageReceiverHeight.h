@@ -6,7 +6,7 @@
 class LineOfSightCoverageReceiverHeight : ArgumentProcessor
 {
 public:
-    LineOfSightCoverageReceiverHeight(double& receiverAltitude, int& maxTransmitSites, bool& generateCoverageMap);
+    LineOfSightCoverageReceiverHeight(double & receiverAltitude, int & maxTransmitSites, bool & generateCoverageMap);
     ~LineOfSightCoverageReceiverHeight();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,8 +14,8 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    double& receiverAltitude;
-    int& maxTransmitSites;
-    bool& generateCoverageMap;
+    double & receiverAltitude;
+    int & maxTransmitSites;
+    bool & generateCoverageMap;
 };
 #endif

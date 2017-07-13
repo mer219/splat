@@ -3,7 +3,7 @@
 #include <cstring>
 #include <stdexcept>
 
-TopographicMapOutputFilename::TopographicMapOutputFilename(char mapfile[], bool& generateTopographicalMap) :
+TopographicMapOutputFilename::TopographicMapOutputFilename(char mapfile[], bool & generateTopographicalMap) :
     mapFile(mapFile),
     generateTopographicalMap(generateTopographicalMap)
 {
@@ -28,7 +28,7 @@ void TopographicMapOutputFilename::ProcessArgument(const char argument[])
     if (argument[0] && argument[0] != '-')
     {
         strncpy(mapFile, argument, 253);
-        generateTopographicalMap=true;
+        generateTopographicalMap = true;
     }
     else
     {

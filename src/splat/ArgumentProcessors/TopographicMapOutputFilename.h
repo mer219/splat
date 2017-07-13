@@ -6,7 +6,7 @@
 class TopographicMapOutputFilename : ArgumentProcessor
 {
 public:
-    TopographicMapOutputFilename(char mapFile[], bool& generateMap);
+    TopographicMapOutputFilename(char mapFile[], bool & generateMap);
     ~TopographicMapOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,7 +14,7 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    char* mapFile;
-    bool& generateTopographicalMap;
+    char * mapFile;
+    bool & generateTopographicalMap;
 };
 #endif

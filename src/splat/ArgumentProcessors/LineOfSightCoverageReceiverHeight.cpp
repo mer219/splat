@@ -4,9 +4,9 @@
 #include <cstdio>
 #include <stdexcept>
 
-LineOfSightCoverageReceiverHeight::LineOfSightCoverageReceiverHeight(double& receiverAltitude, int& maxTransmitSites, bool& generateCoverageMap) :
+LineOfSightCoverageReceiverHeight::LineOfSightCoverageReceiverHeight(double & receiverAltitude, int & maxTransmitterSites, bool & generateCoverageMap) :
     receiverAltitude(receiverAltitude),
-    maxTransmitSites(maxTransmitSites),
+    maxTransmitterSites(maxTransmitterSites),
     generateCoverageMap(generateCoverageMap)
 {
 }
@@ -30,8 +30,8 @@ void LineOfSightCoverageReceiverHeight::ProcessArgument(const char argument[])
     if (argument[0] && argument[0] != '-')
     {
         sscanf(argument, "%lf", &receiverAltitude);
-        generateCoverageMap=1;
-        maxTransmitSites=4;
+        generateCoverageMap = 1;
+        maxTransmitterSites = 4;
     }
     else
     {

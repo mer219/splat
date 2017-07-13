@@ -6,7 +6,7 @@
 class RangeModifier : ArgumentProcessor
 {
 public:
-    RangeModifier(double& maxRange);
+    RangeModifier(double & maxRange);
     ~RangeModifier();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    double& maxRange;
+    double & maxRange;
 };
 #endif

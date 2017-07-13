@@ -6,7 +6,7 @@
 class LogOutputFilename : ArgumentProcessor
 {
 public:
-    LogOutputFilename(char* logFile, bool& logOutputToFile);
+    LogOutputFilename(char * logFile, bool & logOutputToFile);
     ~LogOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,7 +14,7 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    char* logFile;
-    bool& logOutputToFile;
+    char * logFile;
+    bool & logOutputToFile;
 };
 #endif

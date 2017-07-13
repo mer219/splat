@@ -6,7 +6,7 @@
 class DoNotPlotFresnelZones : ArgumentProcessor
 {
 public:
-    DoNotPlotFresnelZones(bool& doNotPlotFresnelZones);
+    DoNotPlotFresnelZones(bool & doNotPlotFresnelZones);
     ~DoNotPlotFresnelZones();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& plotFresnelZones;
+    bool & plotFresnelZones;
 };
 #endif

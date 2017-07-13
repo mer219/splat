@@ -6,7 +6,7 @@
 class PlotSignalPowerLevelContours : ArgumentProcessor
 {
 public:
-    PlotSignalPowerLevelContours(bool& plotSignalPowerLevelContours);
+    PlotSignalPowerLevelContours(bool & plotSignalPowerLevelContours);
     ~PlotSignalPowerLevelContours();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& plotSignalPowerLevelContours;
+    bool & plotSignalPowerLevelContours;
 };
 #endif

@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-FresnelZoneClearancePercentage::FresnelZoneClearancePercentage(double& fresnelZoneClearancePercentage) :
+FresnelZoneClearancePercentage::FresnelZoneClearancePercentage(double & fresnelZoneClearancePercentage) :
     fresnelZoneClearancePercentage(fresnelZoneClearancePercentage)
 {
 }
@@ -30,7 +30,9 @@ void FresnelZoneClearancePercentage::ProcessArgument(const char argument[])
         sscanf(argument, "%lf", &fresnelZoneClearancePercentage);
             
         if (fresnelZoneClearancePercentage < 0.0 || fresnelZoneClearancePercentage > 100.0)
+	{
             fresnelZoneClearancePercentage = 60.0;
+	}
         
         fresnelZoneClearancePercentage /= 100.0;
     }

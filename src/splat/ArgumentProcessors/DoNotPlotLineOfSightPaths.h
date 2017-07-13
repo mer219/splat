@@ -6,7 +6,7 @@
 class DoNotPlotLineOfSightPaths : ArgumentProcessor
 {
 public:
-    DoNotPlotLineOfSightPaths(bool& doNotPlotLineOfSightPaths);
+    DoNotPlotLineOfSightPaths(bool & doNotPlotLineOfSightPaths);
     ~DoNotPlotLineOfSightPaths();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& doNotPlotLineOfSightPaths;
+    bool & doNotPlotLineOfSightPaths;
 };
 #endif

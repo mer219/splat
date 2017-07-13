@@ -6,7 +6,7 @@
 class NormalizedTerrainHeightPlotOutputFilename : ArgumentProcessor
 {
 public:
-    NormalizedTerrainHeightPlotOutputFilename(char* normalizedTerrainHeightFilename, bool& generateNormalizedTerrainHeightPlot);
+    NormalizedTerrainHeightPlotOutputFilename(char * normalizedTerrainHeightFilename, bool & generateNormalizedTerrainHeightPlot);
     ~NormalizedTerrainHeightPlotOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,7 +14,7 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    char* normalizedTerrainHeightFilename;
-    bool& generateNormalizedTerrainHeightPlot;
+    char * normalizedTerrainHeightFilename;
+    bool & generateNormalizedTerrainHeightPlot;
 };
 #endif

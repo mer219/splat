@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-PlotSignalPowerLevelContours::PlotSignalPowerLevelContours(bool& plotSignalPowerLevelContours) :
+PlotSignalPowerLevelContours::PlotSignalPowerLevelContours(bool & plotSignalPowerLevelContours) :
     plotSignalPowerLevelContours(plotSignalPowerLevelContours)
 {
 }

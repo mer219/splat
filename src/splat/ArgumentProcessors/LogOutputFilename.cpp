@@ -1,10 +1,9 @@
 #include "LogOutputFilename.h"
 
 #include <cstring>
-#include <cstdio>
 #include <stdexcept>
 
-LogOutputFilename::LogOutputFilename(char* logFile, bool& logOutputToFile) :
+LogOutputFilename::LogOutputFilename(char * logFile, bool & logOutputToFile) :
     logFile(logFile),
     logOutputToFile(logOutputToFile)
 {
@@ -33,6 +32,6 @@ void LogOutputFilename::ProcessArgument(const char argument[])
     }
     else
     {
-        throw std::invalid_argument("Invalid Log Filename");
+        throw std::invalid_argument("Invalid Log File Name");
     }
 }

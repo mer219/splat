@@ -6,7 +6,7 @@
 class EarthRadiusMultiplier : ArgumentProcessor
 {
 public:
-    EarthRadiusMultiplier(double& earthRadius);
+    EarthRadiusMultiplier(double & earthRadius);
     ~EarthRadiusMultiplier();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    double& earthRadius;
+    double & earthRadius;
 };
 #endif

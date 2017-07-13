@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-GroundClutterHeight::GroundClutterHeight(double& clutterHeight) :
+GroundClutterHeight::GroundClutterHeight(double & clutterHeight) :
     clutterHeight(clutterHeight)
 {
 }
@@ -30,7 +30,9 @@ void GroundClutterHeight::ProcessArgument(const char argument[])
         sscanf(argument, "%lf", &clutterHeight);
             
         if (clutterHeight < 0.0)
+	{
             clutterHeight = 0.0;
+	}
     }
     else
     {

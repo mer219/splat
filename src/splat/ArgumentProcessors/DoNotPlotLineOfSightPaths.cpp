@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-DoNotPlotLineOfSightPaths::DoNotPlotLineOfSightPaths(bool& doNotPlotLineOfSightPaths) :
+DoNotPlotLineOfSightPaths::DoNotPlotLineOfSightPaths(bool & doNotPlotLineOfSightPaths) :
     doNotPlotLineOfSightPaths(doNotPlotLineOfSightPaths)
 {
 }

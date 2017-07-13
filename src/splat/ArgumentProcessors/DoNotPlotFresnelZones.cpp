@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-DoNotPlotFresnelZones::DoNotPlotFresnelZones(bool& plotFresnelZones) :
+DoNotPlotFresnelZones::DoNotPlotFresnelZones(bool & plotFresnelZones) :
     plotFresnelZones(plotFresnelZones)
 {
 }

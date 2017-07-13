@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-DisplayGreyscaleTopographyAsWhite::DisplayGreyscaleTopographyAsWhite(bool& displayGreyscaleTopographyAsWhite) :
+DisplayGreyscaleTopographyAsWhite::DisplayGreyscaleTopographyAsWhite(bool & displayGreyscaleTopographyAsWhite) :
     displayGreyscaleTopographyAsWhite(displayGreyscaleTopographyAsWhite)
 {
 }

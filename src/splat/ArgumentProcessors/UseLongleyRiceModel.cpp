@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-UseLongleyRiceModel::UseLongleyRiceModel(bool& useLongleyRice) :
+UseLongleyRiceModel::UseLongleyRiceModel(bool & useLongleyRice) :
     useLongleyRice(useLongleyRice)
 {
 }

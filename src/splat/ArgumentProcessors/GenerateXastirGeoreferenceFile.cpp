@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-GenerateXastirGeoreferenceFile::GenerateXastirGeoreferenceFile(bool& generateXastirFile) :
+GenerateXastirGeoreferenceFile::GenerateXastirGeoreferenceFile(bool & generateXastirFile) :
     generateXastirFile(generateXastirFile)
 {
 }

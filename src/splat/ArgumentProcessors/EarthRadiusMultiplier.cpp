@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <stdexcept>
 
-EarthRadiusMultiplier::EarthRadiusMultiplier(double& earthRadius) :
+EarthRadiusMultiplier::EarthRadiusMultiplier(double & earthRadius) :
     earthRadius(earthRadius)
 {
 }
@@ -32,10 +32,13 @@ void EarthRadiusMultiplier::ProcessArgument(const char argument[])
         sscanf(argument, "%lf", &earthRadiusMultiplier);
         
         if (earthRadiusMultiplier < 0.1)
+	{
             earthRadiusMultiplier = 1.0;
-            
-        if (earthRadiusMultiplier > 1.0e6)
+	}
+	else if (earthRadiusMultiplier > 1.0e6)
+	{
             earthRadiusMultiplier = 1.0e6;
+	}
         
         earthRadius *= earthRadiusMultiplier;
     }

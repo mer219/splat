@@ -6,7 +6,7 @@
 class UseLongleyRiceModel : ArgumentProcessor
 {
 public:
-    UseLongleyRiceModel(bool& useLongleyRice);
+    UseLongleyRiceModel(bool & useLongleyRice);
     ~UseLongleyRiceModel();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& useLongleyRice;
+    bool & useLongleyRice;
 };
 #endif

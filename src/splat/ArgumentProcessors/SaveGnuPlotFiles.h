@@ -6,7 +6,7 @@
 class SaveGnuPlotFiles : ArgumentProcessor
 {
 public:
-    SaveGnuPlotFiles(bool& saveGnuPlotFiles);
+    SaveGnuPlotFiles(bool & saveGnuPlotFiles);
     ~SaveGnuPlotFiles();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& saveGnuPlotFiles;
+    bool & saveGnuPlotFiles;
 };
 #endif

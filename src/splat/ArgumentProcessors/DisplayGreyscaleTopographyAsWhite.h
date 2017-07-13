@@ -6,7 +6,7 @@
 class DisplayGreyscaleTopographyAsWhite : ArgumentProcessor
 {
 public:
-    DisplayGreyscaleTopographyAsWhite(bool& displayGreyscaleTopographyAsWhite);
+    DisplayGreyscaleTopographyAsWhite(bool & displayGreyscaleTopographyAsWhite);
     ~DisplayGreyscaleTopographyAsWhite();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
@@ -14,6 +14,6 @@ public:
     void ProcessArgument(const char argument[]);
 
 private:
-    bool& displayGreyscaleTopographyAsWhite;
+    bool & displayGreyscaleTopographyAsWhite;
 };
 #endif
