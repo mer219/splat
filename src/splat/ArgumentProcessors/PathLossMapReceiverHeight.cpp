@@ -1,10 +1,13 @@
 #include "PathLossMapReceiverHeight.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <cstdio>
 #include <stdexcept>
 
-PathLossMapReceiverHeight::PathLossMapReceiverHeight(double & receiverAltitude, bool & generateLossMap) :
+PathLossMapReceiverHeight::PathLossMapReceiverHeight(Arguments & arguments, double & receiverAltitude, bool & generateLossMap) :
+    arguments(arguments),
     receiverAltitude(receiverAltitude),
     generateLossMap(generateLossMap)
 {
@@ -19,21 +22,24 @@ bool PathLossMapReceiverHeight::ArgumentBelongsToThisProcessor(const char * argu
     return strcmp(argument, "-L") == 0;
 }
 
-bool PathLossMapReceiverHeight::DoesThisOptionTakeAValue()
+void PathLossMapReceiverHeight::ProcessArgument()
 {
-    return true;
-}
-    
-void PathLossMapReceiverHeight::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        sscanf(argument, "%lf", &receiverAltitude);
-        generateLossMap = 1;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            sscanf(argument, "%lf", &receiverAltitude);
+            generateLossMap = 1;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Path Loss Map Receiver Height");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Path Loss Map Receiver Height");
+        throw std::invalid_argument("Not enough arguments");
     }
 
 //if (coverage)

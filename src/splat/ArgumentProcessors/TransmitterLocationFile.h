@@ -8,18 +8,19 @@
 #include <vector>
 
 class SiteLocationFile;
+class Arguments;
 
 class TransmitterLocationFile : ArgumentProcessor
 {
 public:
-    TransmitterLocationFile(std::vector<Site *> & transmitterLocations, SiteLocationFile & siteLocationFile);
+    TransmitterLocationFile(Arguments & arguments, std::vector<Site *> & transmitterLocations, SiteLocationFile & siteLocationFile);
     ~TransmitterLocationFile();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     std::vector<Site *> & transmitterLocations;
     SiteLocationFile & siteLocationFile;
 };

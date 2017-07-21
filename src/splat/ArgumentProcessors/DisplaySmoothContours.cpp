@@ -16,12 +16,7 @@ bool DisplaySmoothContours::ArgumentBelongsToThisProcessor(const char * argument
     return strcmp(argument, "sc") == 0;
 }
 
-bool DisplaySmoothContours::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void DisplaySmoothContours::ProcessArgument(const char * /*argument[]*/)
+void DisplaySmoothContours::ProcessArgument()
 {
     displaySmoothContours = true;
 }

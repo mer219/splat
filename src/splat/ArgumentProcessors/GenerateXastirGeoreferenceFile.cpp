@@ -16,12 +16,7 @@ bool GenerateXastirGeoreferenceFile::ArgumentBelongsToThisProcessor(const char *
     return strcmp(argument, "-geo") == 0;
 }
 
-bool GenerateXastirGeoreferenceFile::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void GenerateXastirGeoreferenceFile::ProcessArgument(const char * /*argument[]*/)
+void GenerateXastirGeoreferenceFile::ProcessArgument()
 {
     generateXastirFile = true;
 }

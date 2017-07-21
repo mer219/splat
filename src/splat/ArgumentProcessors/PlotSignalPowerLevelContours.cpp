@@ -16,12 +16,7 @@ bool PlotSignalPowerLevelContours::ArgumentBelongsToThisProcessor(const char * a
     return strcmp(argument, "-dbm") == 0;
 }
 
-bool PlotSignalPowerLevelContours::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void PlotSignalPowerLevelContours::ProcessArgument(const char * /*argument[]*/)
+void PlotSignalPowerLevelContours::ProcessArgument()
 {
     plotSignalPowerLevelContours = true;
 }

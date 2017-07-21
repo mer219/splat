@@ -16,12 +16,7 @@ bool MetricUnits::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-metric") == 0;
 }
 
-bool MetricUnits::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void MetricUnits::ProcessArgument(const char * /*argument[]*/)
+void MetricUnits::ProcessArgument()
 {
     useMetric = true;
 }

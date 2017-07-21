@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class PathLossMapReceiverHeight : ArgumentProcessor
 {
 public:
-    PathLossMapReceiverHeight(double & receiverAltitude, bool & generateLossMap);
+    PathLossMapReceiverHeight(Arguments & arguments, double & receiverAltitude, bool & generateLossMap);
     ~PathLossMapReceiverHeight();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     double & receiverAltitude;
     bool & generateLossMap;
 };

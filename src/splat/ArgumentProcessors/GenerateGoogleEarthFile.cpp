@@ -16,12 +16,7 @@ bool GenerateGoogleEarthFile::ArgumentBelongsToThisProcessor(const char * argume
     return strcmp(argument, "-kml") == 0;
 }
 
-bool GenerateGoogleEarthFile::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void GenerateGoogleEarthFile::ProcessArgument(const char * /*argument[]*/)
+void GenerateGoogleEarthFile::ProcessArgument()
 {
     generateGoogleEarthFile = true;
 }

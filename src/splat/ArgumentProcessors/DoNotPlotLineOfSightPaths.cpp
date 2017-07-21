@@ -16,12 +16,7 @@ bool DoNotPlotLineOfSightPaths::ArgumentBelongsToThisProcessor(const char * argu
     return strcmp(argument, "-n") == 0;
 }
 
-bool DoNotPlotLineOfSightPaths::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void DoNotPlotLineOfSightPaths::ProcessArgument(const char * /*argument[]*/)
+void DoNotPlotLineOfSightPaths::ProcessArgument()
 {
     doNotPlotLineOfSightPaths = true;
 }

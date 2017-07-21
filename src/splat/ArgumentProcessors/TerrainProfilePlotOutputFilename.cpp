@@ -1,9 +1,12 @@
 #include "TerrainProfilePlotOutputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-TerrainProfilePlotOutputFilename::TerrainProfilePlotOutputFilename(char * terrainProfileFilename, bool & generateTerrainProfilePlot) :
+TerrainProfilePlotOutputFilename::TerrainProfilePlotOutputFilename(Arguments & arguments, char * terrainProfileFilename, bool & generateTerrainProfilePlot) :
+    arguments(arguments),
     terrainProfileFilename(terrainProfileFilename),
     generateTerrainProfilePlot(generateTerrainProfilePlot)
 {
@@ -18,20 +21,23 @@ bool TerrainProfilePlotOutputFilename::ArgumentBelongsToThisProcessor(const char
     return strcmp(argument, "-p") == 0;
 }
 
-bool TerrainProfilePlotOutputFilename::DoesThisOptionTakeAValue()
+void TerrainProfilePlotOutputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void TerrainProfilePlotOutputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(terrainProfileFilename, argument, 253);
-        generateTerrainProfilePlot = true;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(terrainProfileFilename, argument, 253);
+            generateTerrainProfilePlot = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Terrain Profile Plot Output File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Terrain Profile Plot Output File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

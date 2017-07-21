@@ -4,14 +4,16 @@
 #include <vector>
 
 class ArgumentProcessor;
+class Arguments;
 
 class ArgumentsParser
 {
 public:
-    ArgumentsParser(std::vector<ArgumentProcessor *> & argumentProcessors);
-    void ProcessArguments(int argc, const char * argv[]);
+    ArgumentsParser(Arguments & arguments, std::vector<ArgumentProcessor *> & argumentProcessors);
+    void ProcessArguments();
 
 private:
+    Arguments & arguments;
     std::vector<ArgumentProcessor *> & argumentProcessors;
 };
 

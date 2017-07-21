@@ -1,9 +1,12 @@
 #include "SplatDataFilePath.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-SplatDataFilePath::SplatDataFilePath(char * splatDataFilePath) :
+SplatDataFilePath::SplatDataFilePath(Arguments & arguments, char * splatDataFilePath) :
+    arguments(arguments),
     splatDataFilePath(splatDataFilePath)
 {
 }
@@ -17,19 +20,22 @@ bool SplatDataFilePath::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-sdf") == 0;
 }
 
-bool SplatDataFilePath::DoesThisOptionTakeAValue()
+void SplatDataFilePath::ProcessArgument()
 {
-    return true;
-}
-    
-void SplatDataFilePath::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(splatDataFilePath, argument, 253);
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(splatDataFilePath, argument, 253);
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Splat Data File Path");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Splat Data File Path");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

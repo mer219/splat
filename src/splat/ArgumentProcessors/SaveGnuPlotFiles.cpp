@@ -16,12 +16,7 @@ bool SaveGnuPlotFiles::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-gpsav") == 0;
 }
 
-bool SaveGnuPlotFiles::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void SaveGnuPlotFiles::ProcessArgument(const char * /*argument[]*/)
+void SaveGnuPlotFiles::ProcessArgument()
 {
     saveGnuPlotFiles = true;
 }

@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class EarthRadiusMultiplier : ArgumentProcessor
 {
 public:
-    EarthRadiusMultiplier(double & earthRadius);
+    EarthRadiusMultiplier(Arguments & arguments, double & earthRadius);
     ~EarthRadiusMultiplier();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     double & earthRadius;
 };
 #endif

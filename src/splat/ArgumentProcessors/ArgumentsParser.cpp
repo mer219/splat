@@ -2,36 +2,29 @@
 
 #include "ArgumentProcessor.h"
 
+#include "Arguments.h"
+
 #include <stdexcept>
 
-ArgumentsParser::ArgumentsParser(std::vector<ArgumentProcessor*>& argumentProcessors) :
+ArgumentsParser::ArgumentsParser(Arguments & arguments, std::vector<ArgumentProcessor*>& argumentProcessors) :
+    arguments(arguments),
     argumentProcessors(argumentProcessors)
 {
 }
 
-void ArgumentsParser::ProcessArguments(int argc, const char * argv[])
+void ArgumentsParser::ProcessArguments()
 {
-    int numberOfArguments = argc - 1; //the first argument is the application name
-
-    for (int argumentIndex = 1; argumentIndex <= numberOfArguments; argumentIndex++)
+    while(arguments.AreThereUnprocessedArguments())
     {
-       for (std::vector<ArgumentProcessor*>::iterator argumentProcessor = argumentProcessors.begin(); argumentProcessor != argumentProcessors.end(); argumentProcessor++)
-       {
-           if((*argumentProcessor)->ArgumentBelongsToThisProcessor(argv[argumentIndex]))
-           {
-	       if((*argumentProcessor)->DoesThisOptionTakeAValue())
-               {
-                   argumentIndex += 1;
-		   if(argumentIndex > numberOfArguments)
-                   {
-                       throw std::invalid_argument("Insufficient Number of Arguments");
-                   }
-               }
-
-	       (*argumentProcessor)->ProcessArgument(argv[argumentIndex]);
-	       break;
-           }
-       }
+        char * argument = arguments.ProcessNextArgument();
+        for (std::vector<ArgumentProcessor*>::iterator argumentProcessor = argumentProcessors.begin(); argumentProcessor != argumentProcessors.end(); argumentProcessor++)
+        {
+            if((*argumentProcessor)->ArgumentBelongsToThisProcessor(argument))
+            {
+	            (*argumentProcessor)->ProcessArgument(argument);
+	            break;
+            }
+        }
     }
 }
 /*	       

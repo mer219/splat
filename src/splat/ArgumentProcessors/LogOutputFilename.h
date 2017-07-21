@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class LogOutputFilename : ArgumentProcessor
 {
 public:
-    LogOutputFilename(char * logFile, bool & logOutputToFile);
+    LogOutputFilename(Arguments & arguments, char * logFile, bool & logOutputToFile);
     ~LogOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     char * logFile;
     bool & logOutputToFile;
 };

@@ -1,9 +1,12 @@
 #include "LongleyPlotOutputFileName.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-LongleyPlotOutputFileName::LongleyPlotOutputFileName(char * longleyFileName, bool & generateLongleyPlot) :
+LongleyPlotOutputFileName::LongleyPlotOutputFileName(Arguments & arguments, char * longleyFileName, bool & generateLongleyPlot) :
+    arguments(arguments),
     longleyFileName(longleyFileName),
     generateLongleyPlot(generateLongleyPlot)
 {
@@ -18,20 +21,23 @@ bool LongleyPlotOutputFileName::ArgumentBelongsToThisProcessor(const char * argu
     return strcmp(argument, "-l") == 0;
 }
 
-bool LongleyPlotOutputFileName::DoesThisOptionTakeAValue()
+void LongleyPlotOutputFileName::ProcessArgument()
 {
-    return true;
-}
-    
-void LongleyPlotOutputFileName::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(longleyFileName, argument, 253);
-        generateLongleyPlot = 1;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(longleyFileName, argument, 253);
+            generateLongleyPlot = 1;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Longely Plot Output File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Longely Plot Output File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

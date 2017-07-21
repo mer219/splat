@@ -1,11 +1,13 @@
 #include "TransmitterLocationFile.h"
 
 #include "../FileUtilities/SiteLocationFile.h"
+#include "Arguments.h"
 
 #include <cstring>
 #include <stdexcept>
 
-TransmitterLocationFile::TransmitterLocationFile(std::vector<Site *> & transmitterLocations, SiteLocationFile & siteLocationFile) :
+TransmitterLocationFile::TransmitterLocationFile(Arguments & arguments, std::vector<Site *> & transmitterLocations, SiteLocationFile & siteLocationFile) :
+        arguments(arguments),
         transmitterLocations(transmitterLocations),
         siteLocationFile(siteLocationFile)
 {
@@ -20,21 +22,24 @@ bool TransmitterLocationFile::ArgumentBelongsToThisProcessor(const char * argume
     return strcmp(argument, "-t") == 0;
 }
 
-bool TransmitterLocationFile::DoesThisOptionTakeAValue()
+void TransmitterLocationFile::ProcessArgument()
 {
-    return true;
-}
-    
-void TransmitterLocationFile::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-' && transmitterLocations.size() < 30)
+    if(arguments.AreThereUnprocessedArguments())
     {
-        char fileName[255];
-	strcpy(fileName, argument);
-        transmitterLocations.push_back(siteLocationFile.ReadFile(fileName));
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-' && transmitterLocations.size() < 30)
+        {
+            char fileName[255];
+	        strcpy(fileName, argument);
+            transmitterLocations.push_back(siteLocationFile.ReadFile(fileName));
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Transmitter Location File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Transmitter Location File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

@@ -1,9 +1,12 @@
 #include "LogOutputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-LogOutputFilename::LogOutputFilename(char * logFile, bool & logOutputToFile) :
+LogOutputFilename::LogOutputFilename(Arguments & arguments, char * logFile, bool & logOutputToFile) :
+    arguments(arguments),
     logFile(logFile),
     logOutputToFile(logOutputToFile)
 {
@@ -18,20 +21,23 @@ bool LogOutputFilename::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-log") == 0;
 }
 
-bool LogOutputFilename::DoesThisOptionTakeAValue()
+void LogOutputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void LogOutputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(logFile, argument, 253);
-        logOutputToFile = true;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(logFile, argument, 253);
+            logOutputToFile = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Log File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Log File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

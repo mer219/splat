@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class TopographicMapOutputFilename : ArgumentProcessor
 {
 public:
-    TopographicMapOutputFilename(char mapFile[], bool & generateMap);
+    TopographicMapOutputFilename(Arguments & arguments, char mapFile[], bool & generateMap);
     ~TopographicMapOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     char * mapFile;
     bool & generateTopographicalMap;
 };

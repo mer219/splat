@@ -5,20 +5,21 @@
 
 #include <vector>
 
+class Arguments;
 class SiteLocationFile;
 class Site;
 
 class ReceiverLocationFile : ArgumentProcessor
 {
 public:
-    ReceiverLocationFile(std::vector<Site *> & receiverSites, SiteLocationFile & siteLocationFile);
+    ReceiverLocationFile(Arguments & arguments, std::vector<Site *> & receiverSites, SiteLocationFile & siteLocationFile);
     ~ReceiverLocationFile();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     std::vector<Site *> & receiverSites;
     SiteLocationFile & siteLocationFile;
 };

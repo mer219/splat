@@ -1,10 +1,13 @@
 #include "LineOfSightCoverageReceiverHeight.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <cstdio>
 #include <stdexcept>
 
-LineOfSightCoverageReceiverHeight::LineOfSightCoverageReceiverHeight(double & receiverAltitude, int & maxTransmitterSites, bool & generateCoverageMap) :
+LineOfSightCoverageReceiverHeight::LineOfSightCoverageReceiverHeight(Arguments & arguments, double & receiverAltitude, int & maxTransmitterSites, bool & generateCoverageMap) :
+    arguments(arguments),
     receiverAltitude(receiverAltitude),
     maxTransmitterSites(maxTransmitterSites),
     generateCoverageMap(generateCoverageMap)
@@ -20,21 +23,24 @@ bool LineOfSightCoverageReceiverHeight::ArgumentBelongsToThisProcessor(const cha
     return strcmp(argument, "-c") == 0;
 }
 
-bool LineOfSightCoverageReceiverHeight::DoesThisOptionTakeAValue()
+void LineOfSightCoverageReceiverHeight::ProcessArgument()
 {
-    return true;
-}
-    
-void LineOfSightCoverageReceiverHeight::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        sscanf(argument, "%lf", &receiverAltitude);
-        generateCoverageMap = 1;
-        maxTransmitterSites = 4;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            sscanf(argument, "%lf", &receiverAltitude);
+            generateCoverageMap = 1;
+            maxTransmitterSites = 4;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Line of Sight Coverage Receiver Height");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Line of Sight Coverage Receiver Height");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

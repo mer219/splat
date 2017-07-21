@@ -1,10 +1,13 @@
 #include "ContourThreshold.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <cstdio>
 #include <stdexcept>
 
-ContourThreshold::ContourThreshold(int & contourThreshold) :
+ContourThreshold::ContourThreshold(Arguments & arguments, int & contourThreshold) :
+    arguments(arguments),
     contourThreshold(contourThreshold)
 {
 }
@@ -18,19 +21,23 @@ bool ContourThreshold::ArgumentBelongsToThisProcessor(const char * argument)
     return (strcmp(argument, "-db") == 0 || strcmp(argument, "-dB") == 0);
 }
 
-bool ContourThreshold::DoesThisOptionTakeAValue()
+void ContourThreshold::ProcessArgument()
 {
-    return true;
-}
-    
-void ContourThreshold::ProcessArgument(const char argument[])
-{
-    if (argument[0])
+    if(arguments.AreThereUnprocessedArguments())
     {
-        sscanf(argument, "%d", &contourThreshold);
+        char * argument = arguments.ProcessNextArgument();
+
+        if (argument[0])
+        {
+            sscanf(argument, "%d", &contourThreshold);
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Contour Threshold Value");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Contour Threshold Value");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

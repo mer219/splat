@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class RangeModifier : ArgumentProcessor
 {
 public:
-    RangeModifier(double & maxRange);
+    RangeModifier(Arguments & arguments, double & maxRange);
     ~RangeModifier();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     double & maxRange;
 };
 #endif

@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class TerrainHeightPlotOutputFilename : ArgumentProcessor
 {
 public:
-    TerrainHeightPlotOutputFilename(char * terrainHeightFilename, bool & generateTerrainHeightPlot);
+    TerrainHeightPlotOutputFilename(Arguments & arguments, char * terrainHeightFilename, bool & generateTerrainHeightPlot);
     ~TerrainHeightPlotOutputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     char * terrainHeightFilename;
     bool & generateTerrainHeightPlot;
 };

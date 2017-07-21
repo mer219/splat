@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class LongleyPlotOutputFileName : ArgumentProcessor
 {
 public:
-    LongleyPlotOutputFileName(char * longleyFileName, bool & generateLongleyPlot);
+    LongleyPlotOutputFileName(Arguments & arguments, char * longleyFileName, bool & generateLongleyPlot);
     ~LongleyPlotOutputFileName();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     char * longleyFileName;
     bool & generateLongleyPlot;
 };

@@ -1,9 +1,12 @@
 #include "UserDefinedTerrainInputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-UserDefinedTerrainInputFilename::UserDefinedTerrainInputFilename(char userDefinedTerrainFilename[]) :
+UserDefinedTerrainInputFilename::UserDefinedTerrainInputFilename(Arguments & arguments, char userDefinedTerrainFilename[]) :
+    arguments(arguments),
     userDefinedTerrainFilename(userDefinedTerrainFilename)
 {
 }
@@ -17,19 +20,22 @@ bool UserDefinedTerrainInputFilename::ArgumentBelongsToThisProcessor(const char 
     return strcmp(argument, "-udt") == 0;
 }
 
-bool UserDefinedTerrainInputFilename::DoesThisOptionTakeAValue()
+void UserDefinedTerrainInputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void UserDefinedTerrainInputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(userDefinedTerrainFilename, argument, 253);
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(userDefinedTerrainFilename, argument, 253);
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid User Define Terrain Input File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid User Define Terrain Input File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

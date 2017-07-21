@@ -1,9 +1,12 @@
 #include "TerrainHeightPlotOutputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-TerrainHeightPlotOutputFilename::TerrainHeightPlotOutputFilename(char * terrainHeightFilename, bool & generateTerrainHeightPlot) :
+TerrainHeightPlotOutputFilename::TerrainHeightPlotOutputFilename(Arguments & arguments, char * terrainHeightFilename, bool & generateTerrainHeightPlot) :
+    arguments(arguments),
     terrainHeightFilename(terrainHeightFilename),
     generateTerrainHeightPlot(generateTerrainHeightPlot)
 {
@@ -18,20 +21,23 @@ bool TerrainHeightPlotOutputFilename::ArgumentBelongsToThisProcessor(const char 
     return strcmp(argument, "-h") == 0;
 }
 
-bool TerrainHeightPlotOutputFilename::DoesThisOptionTakeAValue()
+void TerrainHeightPlotOutputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void TerrainHeightPlotOutputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(terrainHeightFilename, argument, 253);
-        generateTerrainHeightPlot = true;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(terrainHeightFilename, argument, 253);
+            generateTerrainHeightPlot = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Terrain Height Plot Output File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Terrain Height Plot Output File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

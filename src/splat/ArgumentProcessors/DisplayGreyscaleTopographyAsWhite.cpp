@@ -16,12 +16,7 @@ bool DisplayGreyscaleTopographyAsWhite::ArgumentBelongsToThisProcessor(const cha
     return strcmp(argument, "-ngs") == 0;
 }
 
-bool DisplayGreyscaleTopographyAsWhite::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void DisplayGreyscaleTopographyAsWhite::ProcessArgument(const char * /*argument[]*/)
+void DisplayGreyscaleTopographyAsWhite::ProcessArgument()
 {
     displayGreyscaleTopographyAsWhite = true;
 }

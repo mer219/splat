@@ -1,5 +1,6 @@
 #include "ReceiverLocationFile.h"
 
+#include "Arguments.h"
 #include "../FileUtilities/SiteLocationFile.h"
 #include "../include/Site.h"
 
@@ -7,7 +8,8 @@
 #include <cstdio>
 #include <stdexcept>
 
-ReceiverLocationFile::ReceiverLocationFile(std::vector<Site *> & receiverSites, SiteLocationFile & siteLocationFile) :
+ReceiverLocationFile::ReceiverLocationFile(Arguments & arguments, std::vector<Site *> & receiverSites, SiteLocationFile & siteLocationFile) :
+    arguments(arguments),
     receiverSites(receiverSites),
     siteLocationFile(siteLocationFile)
 {
@@ -22,21 +24,25 @@ bool ReceiverLocationFile::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-r") == 0;
 }
 
-bool ReceiverLocationFile::DoesThisOptionTakeAValue()
+void ReceiverLocationFile::ProcessArgument()
 {
-    return true;
-}
-    
-void ReceiverLocationFile::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        char receiverFileName[255];
-        strncpy(receiverFileName, argument, 253);
-        receiverSites.push_back(siteLocationFile.ReadFile(receiverFileName));
+        char * argument = arguments.ProcessNextArgument();
+
+        if (argument[0] && argument[0] != '-')
+        {
+            char receiverFileName[255];
+            strncpy(receiverFileName, argument, 253);
+            receiverSites.push_back(siteLocationFile.ReadFile(receiverFileName));
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid ReceiverLocation File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid ReceiverLocation File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

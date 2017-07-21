@@ -17,12 +17,7 @@ bool NoUnnecessaryReports::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-N") == 0;
 }
 
-bool NoUnnecessaryReports::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void NoUnnecessaryReports::ProcessArgument(const char * /*argument[]*/)
+void NoUnnecessaryReports::ProcessArgument()
 {
     doNotPlotLineOfSightPaths = true;
     doNotPrintSiteReports = true;

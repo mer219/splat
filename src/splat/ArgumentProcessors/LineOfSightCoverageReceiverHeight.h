@@ -3,19 +3,21 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class LineOfSightCoverageReceiverHeight : ArgumentProcessor
 {
 public:
-    LineOfSightCoverageReceiverHeight(double & receiverAltitude, int & maxTransmitSites, bool & generateCoverageMap);
+    LineOfSightCoverageReceiverHeight(Arguments & arguments, double & receiverAltitude, int & maxTransmitSites, bool & generateCoverageMap);
     ~LineOfSightCoverageReceiverHeight();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     double & receiverAltitude;
-    int & maxTransmitSites;
+    int & maxTransmitterSites;
     bool & generateCoverageMap;
 };
 #endif

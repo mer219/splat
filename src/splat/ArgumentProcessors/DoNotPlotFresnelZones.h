@@ -10,8 +10,7 @@ public:
     ~DoNotPlotFresnelZones();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
     bool & plotFresnelZones;

@@ -1,5 +1,7 @@
 #include "UseLongleyRiceModel.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 
 UseLongleyRiceModel::UseLongleyRiceModel(bool & useLongleyRice) :
@@ -16,12 +18,7 @@ bool UseLongleyRiceModel::ArgumentBelongsToThisProcessor(const char * argument)
     return strcmp(argument, "-olditm") == 0;
 }
 
-bool UseLongleyRiceModel::DoesThisOptionTakeAValue()
-{
-    return false;
-}
-    
-void UseLongleyRiceModel::ProcessArgument(const char * /*argument[]*/)
+void UseLongleyRiceModel::ProcessArgument()
 {
     useLongleyRice = true;
 }

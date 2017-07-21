@@ -1,9 +1,12 @@
 #include "TopographicMapOutputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-TopographicMapOutputFilename::TopographicMapOutputFilename(char mapfile[], bool & generateTopographicalMap) :
+TopographicMapOutputFilename::TopographicMapOutputFilename(Arguments & arguments, char mapfile[], bool & generateTopographicalMap) :
+    arguments(arguments),
     mapFile(mapFile),
     generateTopographicalMap(generateTopographicalMap)
 {
@@ -18,20 +21,24 @@ bool TopographicMapOutputFilename::ArgumentBelongsToThisProcessor(const char * a
     return strcmp(argument, "-o") == 0;
 }
 
-bool TopographicMapOutputFilename::DoesThisOptionTakeAValue()
+void TopographicMapOutputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void TopographicMapOutputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(mapFile, argument, 253);
-        generateTopographicalMap = true;
+        char * argument = arguments.ProcessNextArgument();
+
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(mapFile, argument, 253);
+            generateTopographicalMap = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Topographic Map Output Filename");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Topographic Map Output Filename");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

@@ -3,17 +3,19 @@
 
 #include "ArgumentProcessor.h"
 
+class Arguments;
+
 class UserDefinedTerrainInputFilename : ArgumentProcessor
 {
 public:
-    UserDefinedTerrainInputFilename(char userDefinedTerrainFilename[]);
+    UserDefinedTerrainInputFilename(Arguments & arguments, char userDefinedTerrainFilename[]);
     ~UserDefinedTerrainInputFilename();
 
     bool ArgumentBelongsToThisProcessor(const char * argument);
-    bool DoesThisOptionTakeAValue();
-    void ProcessArgument(const char argument[]);
+    void ProcessArgument();
 
 private:
+    Arguments & arguments;
     char * userDefinedTerrainFilename;
 };
 #endif

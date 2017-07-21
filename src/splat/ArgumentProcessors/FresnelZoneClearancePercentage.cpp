@@ -1,10 +1,13 @@
 #include "FresnelZoneClearancePercentage.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <cstdio>
 #include <stdexcept>
 
-FresnelZoneClearancePercentage::FresnelZoneClearancePercentage(double & fresnelZoneClearancePercentage) :
+FresnelZoneClearancePercentage::FresnelZoneClearancePercentage(Arguments & argumnets, double & fresnelZoneClearancePercentage) :
+    arguments(arguments),
     fresnelZoneClearancePercentage(fresnelZoneClearancePercentage)
 {
 }
@@ -18,26 +21,29 @@ bool FresnelZoneClearancePercentage::ArgumentBelongsToThisProcessor(const char *
     return strcmp(argument, "-fz") == 0;
 }
 
-bool FresnelZoneClearancePercentage::DoesThisOptionTakeAValue()
-{
-    return true;
-}
-    
-void FresnelZoneClearancePercentage::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+void FresnelZoneClearancePercentage::ProcessArgument()
+{   
+    if(arguments.AreThereUnprocessedArguments())
     {
-        sscanf(argument, "%lf", &fresnelZoneClearancePercentage);
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            sscanf(argument, "%lf", &fresnelZoneClearancePercentage);
             
-        if (fresnelZoneClearancePercentage < 0.0 || fresnelZoneClearancePercentage > 100.0)
-	{
-            fresnelZoneClearancePercentage = 60.0;
-	}
-        
-        fresnelZoneClearancePercentage /= 100.0;
+            if (fresnelZoneClearancePercentage < 0.0 || fresnelZoneClearancePercentage > 100.0)
+	        {
+                fresnelZoneClearancePercentage = 60.0;
+	        }
+            
+            fresnelZoneClearancePercentage /= 100.0;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Fresnel Zone Clearance Percentage");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Fresnel Zone Clearance Percentage");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

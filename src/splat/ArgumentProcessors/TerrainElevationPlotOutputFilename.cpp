@@ -1,9 +1,12 @@
 #include "TerrainElevationPlotOutputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <stdexcept>
 
-TerrainElevationPlotOutputFilename::TerrainElevationPlotOutputFilename(char * terrainElevationFilename, bool & generateTerrainElevationPlot) :
+TerrainElevationPlotOutputFilename::TerrainElevationPlotOutputFilename(Arguments & arguments, char * terrainElevationFilename, bool & generateTerrainElevationPlot) :
+    arguments(arguments),
     terrainElevationFilename(terrainElevationFilename),
     generateTerrainElevationPlot(generateTerrainElevationPlot)
 {
@@ -18,20 +21,23 @@ bool TerrainElevationPlotOutputFilename::ArgumentBelongsToThisProcessor(const ch
     return strcmp(argument, "-e") == 0;
 }
 
-bool TerrainElevationPlotOutputFilename::DoesThisOptionTakeAValue()
+void TerrainElevationPlotOutputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void TerrainElevationPlotOutputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(terrainElevationFilename, argument, 253);
-        generateTerrainElevationPlot = true;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(terrainElevationFilename, argument, 253);
+            generateTerrainElevationPlot = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Terrain Elevation Plot Output File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Terrain Elevation Plot Output File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }

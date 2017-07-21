@@ -1,10 +1,13 @@
 #include "NormalizedTerrainHeightPlotOutputFilename.h"
 
+#include "Arguments.h"
+
 #include <cstring>
 #include <cstdio>
 #include <stdexcept>
 
-NormalizedTerrainHeightPlotOutputFilename::NormalizedTerrainHeightPlotOutputFilename(char * normalizedTerrainHeightFilename, bool & generateNormalizedTerrainHeightPlot) :
+NormalizedTerrainHeightPlotOutputFilename::NormalizedTerrainHeightPlotOutputFilename(Arguments & arguments, char * normalizedTerrainHeightFilename, bool & generateNormalizedTerrainHeightPlot) :
+    arguments(arguments),
     normalizedTerrainHeightFilename(normalizedTerrainHeightFilename),
     generateNormalizedTerrainHeightPlot(generateNormalizedTerrainHeightPlot)
 {
@@ -19,20 +22,23 @@ bool NormalizedTerrainHeightPlotOutputFilename::ArgumentBelongsToThisProcessor(c
     return strcmp(argument, "-H") == 0;
 }
 
-bool NormalizedTerrainHeightPlotOutputFilename::DoesThisOptionTakeAValue()
+void NormalizedTerrainHeightPlotOutputFilename::ProcessArgument()
 {
-    return true;
-}
-    
-void NormalizedTerrainHeightPlotOutputFilename::ProcessArgument(const char argument[])
-{
-    if (argument[0] && argument[0] != '-')
+    if(arguments.AreThereUnprocessedArguments())
     {
-        strncpy(normalizedTerrainHeightFilename, argument, 253);
-        generateNormalizedTerrainHeightPlot = true;
+        char * argument = arguments.ProcessNextArgument();
+        if (argument[0] && argument[0] != '-')
+        {
+            strncpy(normalizedTerrainHeightFilename, argument, 253);
+            generateNormalizedTerrainHeightPlot = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid Normalized Terrain Height Plot Output File Name");
+        }
     }
     else
     {
-        throw std::invalid_argument("Invalid Normalized Terrain Height Plot Output File Name");
+        throw std::invalid_argument("Not enough arguments");
     }
 }
